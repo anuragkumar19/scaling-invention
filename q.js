@@ -13,7 +13,8 @@ const {
     })
 
 const genRandom = (max, min) => {
-    return Math.floor((Math.random() * max) + min);
+    var random = new Random();
+    return random.integer(min, max)
 }
 
 const parseSign = (num) => {
@@ -72,14 +73,14 @@ genBtn.addEventListener('click', (e) => {
     }
 
     if (type == 2) {
-        const d1 = parseSign(genRandom(5, 1))
-        const d2 = parseSign(genRandom(5, 1))
-        const d3 = parseSign(genRandom(5, 1))
-        const d4 = parseSign(genRandom(5, 1))
-        const d5 = parseSign(genRandom(5, 1))
-        const d6 = parseSign(genRandom(5, 1))
-        const d7 = parseSign(genRandom(5, 1))
-        const d8 = parseSign(genRandom(5, 1))
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+        const d4 = genRandom(5, 1)
+        const d5 = genRandom(5, 1)
+        const d6 = genRandom(5, 1)
+        const d7 = genRandom(5, 1)
+        const d8 = genRandom(5, 1)
 
         const num1 = `${d1}${d2}`
         const num2 = `${d3}${d4}`
