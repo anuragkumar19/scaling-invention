@@ -307,7 +307,7 @@ genBtn.addEventListener('click', (e) => {
         }
 
         t1.classList.remove('d-none')
-        t1.innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
+        t1.querySelector('.card-body').innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
         trackTime(answer)
     }
 })
