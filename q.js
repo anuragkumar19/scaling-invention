@@ -32,6 +32,45 @@ const parseSign2 = (num) => {
     }
 }
 
+const divObj = {
+    1: {
+        min: 10000,
+        max: 52000
+    },
+    2: {
+        min: 4000,
+        max: 32000
+    },
+    3: {
+        min: 3000,
+        max: 25000
+    },
+    4: {
+        min: 2500,
+        max: 20000
+    },
+    5: {
+        min: 1700,
+        max: 16000
+    },
+    6: {
+        min: 1500,
+        max: 14000
+    },
+    7: {
+        min: 1300,
+        max: 12000
+    },
+    8: {
+        min: 1200,
+        max: 11000
+    },
+    9: {
+        min: 1100,
+        max: 10000
+    }
+}
+
 let tIndex = 0
 
 const trackTime = (answer) => {
@@ -213,6 +252,62 @@ genBtn.addEventListener('click', (e) => {
         <h3>${d3}x ${d4} <span class="px-4"></span> ${d7}x ${d8}</h3>
         `
 
+        trackTime(answer)
+    }
+
+    if (type == 8) {
+        const ion = genRandom(2, 1)
+
+        let answer
+        let divident
+        let divisor
+
+        if (ion == 1) {
+            divident = genRandom(999999, 100000)
+            const d = genRandom(9, 1)
+            divisor = `${d}9`
+
+            if (divident%divisor == 0) {
+                answer = 'Yes'
+            } else {
+                //5,43,210
+                const str = `${divident}`
+                const arr = str.split('').reverse()
+                const f = d+1
+
+                let r = 0
+                arr.forEach((dig, i) => {
+                    if (i == 5) {
+                        answer = `No, last number ${r}`
+                        return
+                    }
+                    if (i == 0) {
+                        r = `${parseInt((dig*f)) + parseInt(arr[1])}`
+                    } else {
+                        if (r < 10) {
+                            r = `${(r*f) + parseInt(arr[i+1])}`
+                        } else {
+                            const rStr = `${r}`
+                            const rArr = r.split('').reverse()
+                            r = `${parseInt(rArr[0]*f) + parseInt(rArr[1]) + parseInt(arr[i+1])}`
+                        }
+                    }
+                })
+
+                //if (r1 < 10) {}
+            }
+        } else {
+            const d = genRandom(9, 1)
+            divisor = `${d}9`
+
+            const m = genRandom(divObj[d].max, divObj[d].min)
+            divident = m*divisor
+
+            answer = 'Yes'
+        }
+
+        t1.classList.remove('d-none')
+        t1.innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
         trackTime(answer)
     }
 })
