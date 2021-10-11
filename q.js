@@ -207,7 +207,7 @@ genBtn.addEventListener('click', (e) => {
         const ct = parseSign2(i3 * i6)
         const cx = parseSign2((d2*d6) + (d5*d3))
         const cxs = parseSign2((d1*d6) + (d3*d4) + (d2*d5))
-        const cxc = parseSign2((d1*d5) + (d4*d6))
+        const cxc = parseSign2((d1*d5) + (d4*d2))
         const cxb = parseSign2((d1*d4))
 
         const answer = `${cxb}x⁴ ${cxc}x³ ${cxs}x² ${cx}x ${ct}`
