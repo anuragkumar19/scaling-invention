@@ -4,6 +4,7 @@ const timeD = document.getElementById('timeD')
 const ansD = document.getElementById('ansD')
 const ansS = document.getElementById('ansS')
 const tbtn = document.getElementById('tbtn')
+const qname = document.getElementById('qname')
 
 
 const {
@@ -71,10 +72,49 @@ const divObj = {
     }
 }
 
+const qTitle = {
+    1: 'Sum of two squares of two two digit number | (0-9)',
+    2: 'Sum of three products of two two digit number | (0-5)',
+    3: 'Square of three digit number | (0-9)',
+    4: 'Mutiplication of 1000 + bichlam (Bichlam +ve and not > 10)',
+    5: 'Mutiplication of three two digit number | (0-5)',
+    6: 'Mutiplication of Quadratic Equation | (0-9)',
+    7: 'Sum of products of linear equations | (0-5)',
+    8: 'Divisiblity test by 19,29,39,...,99 (6 digit number)',
+    9: 'Extra Round (Time 1m 5s, 5s for writing question) - Mutiplication of two 4 digit numbers | (0-9)',
+    10: 'Extra Round (Time 1m 5s, 5s for writing question) - Square root of six digit number (not a perfect square) (to the 2nd place in decimal)',
+    11: 'Extra Round (Time 1m 5s, 5s for writing question) - Divide 6 digit number by 2 digit number (flag not more than 5) (solution till 2nd place in decimal)'
+}
+
 let tIndex = 0
 
 const trackTime = (answer) => {
     let time = 30
+
+    ansS.innerText = answer
+    ansS.classList.add('d-none')
+
+    ansD.innerText = ''
+
+    clearInterval(tIndex)
+    tIndex = setInterval(() => {
+        if (time > 0) {
+            time--
+            timeD.innerText = time
+        }
+
+        if (time == 0) {
+            ansS.innerText = ''
+            ansS.classList.add('d-none')
+            ansD.innerText = answer
+        }
+
+    },
+        1000)
+}
+
+const trackTime2 = (answer) => {
+    let time = 65
 
     ansS.innerText = answer
     ansS.classList.add('d-none')
@@ -120,18 +160,24 @@ genBtn.addEventListener('click', (e) => {
         const d6 = genRandom(5, 1)
         const d7 = genRandom(5, 1)
         const d8 = genRandom(5, 1)
+        const d9 = genRandom(5, 1)
+        const d10 = genRandom(5, 1)
+        const d11 = genRandom(5, 1)
+        const d12 = genRandom(5, 1)
 
         const num1 = `${d1}${d2}`
         const num2 = `${d3}${d4}`
         const num3 = `${d5}${d6}`
         const num4 = `${d7}${d8}`
+        const num5 = `${d9}${d10}`
+        const num6 = `${d11}${d12}`
 
-        const answer = (num1*num2) + (num3*num4)
+        const answer = (num1*num2) + (num3*num4) + (num5*num6)
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
-        <h3>${num1} <span class="px-4"></span> ${num3}</h3>
-        <h3>${num2} <span class="px-4"></span> ${num4}</h3>
+        <h3>${num1} <span class="px-4"></span> ${num3} <span class="px-4"></span> ${num5}</h3>
+        <h3>${num2} <span class="px-4"></span> ${num4} <span class="px-4"></span> ${num6}</h3>
         `
 
         trackTime(answer)
@@ -310,6 +356,77 @@ genBtn.addEventListener('click', (e) => {
         t1.querySelector('.card-body').innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
         trackTime(answer)
     }
+
+    if (type == 9) {
+        const num1 = genRandom(9999, 1000)
+        const num2 = genRandom(9999, 1000)
+
+        const answer = num1*num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+
+        trackTime2(answer)
+    }
+
+    if (type == 10) {
+        const genIs = () => {
+            const num = genRandom(999999, 100000)
+
+            const squareRoot = Math.sqrt(num).toString().split('.')
+
+            if (!squareRoot[1] || squareRoot[1].length < 2) {
+                return genIs()
+            } else {
+                return {
+                    num,
+                    squareRoot: `${squareRoot[0]}.${squareRoot[1].charAt(0)}${squareRoot[1].charAt(1)}`
+                }
+            }
+        }
+
+        const {
+            num,
+            squareRoot
+        } = genIs()
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>√( ${num} )</h3>
+        `
+
+        trackTime2(squareRoot)
+    }
+
+    if (type == 11) {
+        const num = genRandom(999999, 100000)
+
+        const d1 = genRandom(9, 1)
+        const d2 = genRandom(5, 0)
+
+        const divisor = `${d1}${d2}`
+
+        const q = num/divisor
+        const qArr = q.toString().split('.')
+        let answer
+        if (!qArr[1]) {
+            answer = `${q}.00`
+        } else {
+            answer = `${qArr[0]}.${qArr[1].charAt(0)}${qArr[1].charAt(1)}`
+        }
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num} ÷ ${divisor}</h3>
+        `
+
+        trackTime2(answer)
+    }
 })
+
+qname.innerText = qTitle[parseInt(type)]
 
 tbtn.addEventListener('click', () => ansS.classList.remove('d-none'))
