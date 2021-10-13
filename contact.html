@@ -27,7 +27,7 @@
         <p>
             Want to some new feature or report some bug. Don't Worry Now. You can contact us quickly throught this form. We will try to take action as soon as possible. Please don't spam because it's a free service and we are currently working under limited resources. If some spam condition will happen it may lead us to take down the contact section.
         </p>
-        <form name="contact" method="POST" data-netlify="true">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Name</label>
                 <input name="name" required type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Deo">
@@ -38,11 +38,14 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Subject</label>
-                <input name="subject" required type="text" class="form-control" id="exampleFormControlInput1" placeholder="Question type 3 gives a wrong answer">
+                <input name="topic" required type="text" class="form-control" id="exampleFormControlInput1" placeholder="Question type 3 gives a wrong answer">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Message</label>
                 <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Describe here..."></textarea>
+            </div>
+            <div class="my-2">
+                <div data-netlify-recaptcha="true"></div>
             </div>
             <button class="btn btn-primary mb-4" type="submit">Submit</button>
         </form>
