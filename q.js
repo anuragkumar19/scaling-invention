@@ -83,7 +83,18 @@ const qTitle = {
     8: 'Divisiblity test by 19,29,39,...,99 (6 digit number)',
     9: 'Extra Round (Time 1m 5s, 5s for writing question) - Mutiplication of two 4 digit numbers | (0-9)',
     10: 'Extra Round (Time 1m 5s, 5s for writing question) - Square root of six digit number (not a perfect square) (to the 2nd place in decimal)',
-    11: 'Extra Round (Time 1m 5s, 5s for writing question) - Divide 6 digit number by 2 digit number (flag not more than 5) (solution till 2nd place in decimal)'
+    11: 'Extra Round (Time 1m 5s, 5s for writing question) - Divide 6 digit number by 2 digit number (flag more than 5) (solution till 2nd place in decimal)',
+    23: 'Mutiplication of two 4 digit numbers | (0-5)',
+    24: 'Multiplication of two four digit number, base 1000, sum of deviation not more than 30, deviation +ve and -ve',
+    25: 'Difference of square of two number whose sum is 99',
+    26: 'Square of number, base 1000, deviation not more than 35',
+    27: 'Square of three digit number | (0-5)',
+    28: 'Square root of 5 digit perfect square number',
+    29: 'Cube root of six digit perfect cube number',
+    30: 'Multiplication of two quadratic equations (0-5)',
+    31: 'Divide 5 digit number by 2 digit number (flag not more than 5) (find quetient and remainder)',
+    32: 'Square root of eight digit number (perfect square)',
+    33: 'Multiplication of three two digit number | (0-5)'
 }
 
 let tIndex = 0
@@ -405,7 +416,7 @@ genBtn.addEventListener('click', (e) => {
         const num = genRandom(999999, 100000)
 
         const d1 = genRandom(9, 1)
-        const d2 = genRandom(5, 0)
+        const d2 = genRandom(9, 6)
 
         const divisor = `${d1}${d2}`
 
@@ -421,6 +432,184 @@ genBtn.addEventListener('click', (e) => {
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
         <h3>${num} ÷ ${divisor}</h3>
+        `
+
+        trackTime2(answer)
+    }
+
+    if (type == 23) {
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+        const d4 = genRandom(5, 1)
+        const d5 = genRandom(5, 1)
+        const d6 = genRandom(5, 1)
+        const d7 = genRandom(5, 1)
+        const d8 = genRandom(5, 1)
+
+        const num1 = `${d1}${d2}${d3}${d4}`
+        const num2 = `${d5}${d6}${d7}${d8}`
+
+        const answer = num1*num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 24) {}
+
+    if (type == 25) {
+        const num1 = genRandom(89, 50)
+        const num2 = 99-num1
+
+        const answer = num1**2 - num2**2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `<h3>(${num1})² - (${num2})²</h3>`
+
+        trackTime(answer)
+    }
+
+    if (type == 26) {
+        const num = genRandom(1035, 1001)
+        const answer = num**2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `<h3>(${num})²</h3>`
+
+        trackTime(answer)
+    }
+
+    if (type == 27) {
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+
+        const num = `${d1}${d2}${d3}`
+
+        const answer = num**2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `<h3>(${num})²</h3>`
+
+        trackTime(answer)
+    }
+
+    if (type == 28) {
+        // 100 - 316
+        const answer = genRandom(316, 100)
+
+        const num = answer**2
+
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>√( ${num} )</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 29) {
+        // 47-99
+        const answer = genRandom(99, 47)
+
+        const num = answer**3
+
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>³√( ${num} )</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 30) {
+        const d1 = parseSign(genRandom(5, 1))
+        const d2 = parseSign(genRandom(5, 1))
+        const d3 = parseSign(genRandom(5, 1))
+        const d4 = parseSign(genRandom(5, 1))
+        const d5 = parseSign(genRandom(5, 1))
+        const d6 = parseSign(genRandom(5, 1))
+
+        const i1 = parseInt(d1)
+        const i2 = parseInt(d2)
+        const i3 = parseInt(d3)
+        const i4 = parseInt(d3)
+        const i5 = parseInt(d4)
+        const i6 = parseInt(d6)
+
+        const ct = parseSign2(i3 * i6)
+        const cx = parseSign2((d2*d6) + (d5*d3))
+        const cxs = parseSign2((d1*d6) + (d3*d4) + (d2*d5))
+        const cxc = parseSign2((d1*d5) + (d4*d2))
+        const cxb = parseSign2((d1*d4))
+
+        const answer = `${cxb}x⁴ ${cxc}x³ ${cxs}x² ${cx}x ${ct}`
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${d1}x² ${d2}x ${d3}</h3>
+        <h3>${d4}x² ${d5}x ${d6}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 31) {
+        const num = genRandom(99999, 10000)
+        const d1 = genRandom(9, 1)
+        const d2 = genRandom(5, 1)
+
+        const divisor = `${d1}${d2}`
+
+        const remainder = num%divisor
+        const q = (num - remainder) / divisor
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `<h3>${num} ÷ ${divisor}<h3>`
+        trackTime2(`Quotient: ${q}, Remainder: ${remainder}`)
+    }
+
+    if (type == 32) {
+        // 3,163-9999
+        const answer = genRandom(9999, 3163)
+
+        const num = answer**2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>√( ${num} )</h3>
+        `
+
+        trackTime2(answer)
+    }
+
+    if (type == 33) {
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+        const d4 = genRandom(5, 1)
+        const d5 = genRandom(5, 1)
+        const d6 = genRandom(5, 1)
+
+        const num1 = parseInt(`${d1}${d2}`)
+        const num2 = parseInt(`${d3}${d4}`)
+        const num3 = parseInt(`${d5}${d6}`)
+
+        const answer = num1*num2*num3
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        <h3>${num3}</h3>
         `
 
         trackTime2(answer)
