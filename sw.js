@@ -6,6 +6,7 @@ const appShellFiles = ['https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.2/
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap',
     'https://fonts.gstatic.com/s/inter/v3/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2',
     'https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js',
+    '/',
     '/manifest.webmanifest',
     '/icon-192x192.png',
     '/icon-256x256.png',
