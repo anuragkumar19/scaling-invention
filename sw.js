@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = 'vedicMaths-v1';
+const cacheName = 'vedicMaths-v1.0.0';
 
 const appShellFiles = ['https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.2/zephyr/bootstrap.min.css',
     'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
@@ -32,7 +32,9 @@ self.addEventListener('install', (e) => {
 // Fetching content using Service Worker
 self.addEventListener('fetch', (e) => {
     e.respondWith((async () => {
-        const r = await caches.match(e.request);
+        const r = await caches.match(e.request, {
+            ignoreSearch: true
+        });
         console.log(`[Service Worker] Fetching resource: ${e.request.url}`);
         if (r) return r;
         const response = await fetch(e.request);
