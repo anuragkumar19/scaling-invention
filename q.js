@@ -91,7 +91,7 @@ const qTitle = {
     18: 'Mutiplication of two three digit number, base 100, deviation postive and not greater than 10',
     19: 'Mutiplication of two three digit number | (0-5)',
     20: 'Extra round : Mutiplication of two 3 digit numbers | (0-9)',
-    21: 'Coming Soon - Extra round : Difference of two fraction | numerator and denomenator not greater than 9',
+    21: 'Extra round : Difference of two fraction | numerator and denomenator not greater than 9',
     22: 'Extra round : Sum of products of two 2 digit number | (0-5)',
     23: 'Mutiplication of two 4 digit numbers | (0-5)',
     24: 'Multiplication of two four digit number, base 1000, sum of deviation not more than 30, deviation +ve and -ve',
@@ -111,7 +111,7 @@ let tIndex = 0
 const trackTime = (answer) => {
     let time = 30
 
-    ansS.innerText = answer
+    ansS.innerHTML = answer
     ansS.classList.add('d-none')
 
     ansD.innerText = ''
@@ -126,7 +126,7 @@ const trackTime = (answer) => {
         if (time == 0) {
             ansS.innerText = ''
             ansS.classList.add('d-none')
-            ansD.innerText = answer
+            ansD.innerHTML = answer
         }
     }, 1000)
 }
@@ -612,13 +612,39 @@ genBtn.addEventListener('click', (e) => {
         trackTime(answer)
     }
 
-    // if(type == 21){
-    //     const d1 = genRandom(9, 1)
-    //     const d2 = genRandom(9, 1)
-    //     const d3 = genRandom(9, 1)
-    //     const d4 = genRandom(9, 1)
+    if (type == 21) {
+        const genQ = () => {
+            const d1 = genRandom(9, 1)
+            const d2 = genRandom(9, 1)
+            const d3 = genRandom(9, 1)
+            const d4 = genRandom(9, 1)
 
-    // }
+            /*
+             d1/d2 - d3/d4
+            */
+
+            const numerator = d1 * d4 - d2 * d3
+
+            if (numerator < 1) {
+                return genQ()
+            }
+
+            const denomenator = d2 * d4
+
+            return { d1, d2, d3, d4, numerator, denomenator }
+        }
+
+        const { d1, d2, d3, d4, numerator, denomenator } = genQ()
+
+        const answer = `<sup>${numerator}</sup>&frasl;<sub>${denomenator}</sub>`
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3><sup>${d1}</sup>&frasl;<sub>${d2}</sub> - <sup>${d3}</sup>&frasl;<sub>${d4}</sub></h3>
+        `
+
+        trackTime(answer)
+    }
 
     if (type == 22) {
         const d1 = genRandom(5, 1)
