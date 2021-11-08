@@ -82,7 +82,7 @@ const qTitle = {
     9: 'Extra Round (Time 1m 5s, 5s for writing question) - Mutiplication of two 4 digit numbers | (0-9)',
     10: 'Extra Round (Time 1m 5s, 5s for writing question) - Square root of six digit number (not a perfect square) (to the 2nd place in decimal)',
     11: 'Extra Round (Time 1m 5s, 5s for writing question) - Divide 6 digit number by 2 digit number (flag more than 5) (solution till 2nd place in decimal)',
-    12: 'Question based on Numbers (based on divisibility of 9, 7 digit number)<br />\n(a) What will be the remainder when the number is divided by 9?\n(b) What is the least amount to add to the number so that the number is divisible by 9?\n(c) What is the least amount to substract to the number so that the number is divisible by 9?',
+    12: 'Question based on Numbers (based on divisibility of 9, 7 digit number)\n(a) What will be the remainder when the number is divided by 9?\n(b) What is the least amount to add to the number so that the number is divisible by 9?\n(c) What is the least amount to substract to the number so that the number is divisible by 9?',
     13: 'Addition and substraction mixed, numbers of three digit, one digit of the three will be negative',
     14: 'Difference of two four digit number',
     15: 'Mutiplication with 999 of theee digit number',
