@@ -685,8 +685,16 @@ genBtn.addEventListener('click', (e) => {
 
         const d2 = fD2()
 
-        const num1 = 1000 + d1
-        const num2 = 1000 + d2
+        let num1 = 1000 + d1
+        let num2 = 1000 + d2
+
+        if (genRandom(2, 1) == 1) {
+            num1 = 1000 + d1
+            num2 = 1000 + d2
+        } else {
+            num1 = 1000 - d1
+            num2 = 1000 - d2
+        }
 
         const answer = num1 * num2
 
