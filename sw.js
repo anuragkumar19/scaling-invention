@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = 'vedicMaths-v1.0.1'
+const cacheName = 'vedicMaths-v1.0.3'
 
 const appShellFiles = [
     'https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.2/zephyr/bootstrap.min.css',
@@ -21,6 +21,7 @@ const appShellFiles = [
     '/q.js',
     '/app.js',
     '/question.html',
+    '/custom.min.css',
 ]
 
 // Installing Service Worker
