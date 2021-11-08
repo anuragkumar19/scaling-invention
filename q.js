@@ -86,13 +86,13 @@ const qTitle = {
     13: 'Addition and substraction mixed, numbers of three digit, one digit of the three will be negative',
     14: 'Difference of two four digit number',
     15: 'Mutiplication with 999 of theee digit number',
-    16: '',
+    16: 'Multiplication two 2 digit number in which digit at tens place is same and sum of digits at ones place is 10',
     17: 'Mutiplication of two two digit number (digit greater than 5)',
     18: 'Mutiplication of two three digit number, base 100, deviation postive and not greater than 10',
     19: 'Mutiplication of two three digit number | (0-5)',
-    20: 'Mutiplication of two 3 digit numbers | (0-9)',
-    21: 'Difference of two fraction | numerator and denomenator not greater than 9',
-    22: 'Sum of products of two 2 digit number | (0-5)',
+    20: 'Extra round : Mutiplication of two 3 digit numbers | (0-9)',
+    21: 'Coming Soon - Extra round : Difference of two fraction | numerator and denomenator not greater than 9',
+    22: 'Extra round : Sum of products of two 2 digit number | (0-5)',
     23: 'Mutiplication of two 4 digit numbers | (0-5)',
     24: 'Multiplication of two four digit number, base 1000, sum of deviation not more than 30, deviation +ve and -ve',
     25: 'Difference of square of two number whose sum is 99',
@@ -101,9 +101,9 @@ const qTitle = {
     28: 'Square root of 5 digit perfect square number',
     29: 'Cube root of six digit perfect cube number',
     30: 'Multiplication of two quadratic equations (0-5)',
-    31: 'Divide 5 digit number by 2 digit number (flag not more than 5) (find quetient and remainder)',
-    32: 'Square root of eight digit number (perfect square)',
-    33: 'Multiplication of three two digit number | (0-5)',
+    31: 'Extra Round (Time 1m 5s, 5s for writing question) : Divide 5 digit number by 2 digit number (flag not more than 5) (find quetient and remainder)',
+    32: 'Extra Round (Time 1m 5s, 5s for writing question) : Square root of eight digit number (perfect square)',
+    33: 'Extra Round (Time 1m 5s, 5s for writing question) : Multiplication of three two digit number | (0-5)',
 }
 
 let tIndex = 0
@@ -473,33 +473,31 @@ genBtn.addEventListener('click', (e) => {
     if (type == 13) {
         let num1 = genRandom(999, 100)
         let num2 = genRandom(999, 100)
-        let num3 = genRandom(999, 100)
+        let num3 = -genRandom(num1 + num2 < 999 ? num1 + num2 : 999, 100)
 
-        const negIndex = genRandom(3, 1)
+        const negIndex = genRandom(2, 1)
 
         if (negIndex == 1) {
-            num1 = -num1
+            t1.querySelector('.card-body').innerHTML = `<h3>${num1}${parseSign2(
+                num3
+            )}${parseSign2(num2)}</h3>`
         }
+
         if (negIndex == 2) {
-            num2 = -num2
-        }
-        if (negIndex == 3) {
-            num3 = -num3
+            t1.querySelector('.card-body').innerHTML = `<h3>${num1}${parseSign2(
+                num2
+            )}${parseSign2(num3)}</h3>`
         }
 
         const answer = num1 + num2 + num3
 
         t1.classList.remove('d-none')
-        t1.querySelector('.card-body').innerHTML = `
-        <h3>${num1}${parseSign2(num2)}${parseSign2(num3)}</h3>
-        `
-
         trackTime(answer)
     }
 
     if (type == 14) {
         const num1 = genRandom(9999, 1000)
-        const num2 = genRandom(9999, 1000)
+        const num2 = genRandom(num1, 1000)
 
         const answer = num1 - num2
 
@@ -518,7 +516,26 @@ genBtn.addEventListener('click', (e) => {
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
-        <h3>999 X ${num}</h3>
+        <h3>${num}</h3>
+        <h3>999</h3>
+        `
+        trackTime(answer)
+    }
+
+    if (type == 16) {
+        const numAtTens = genRandom(9, 1)
+        const d1 = genRandom(9, 1)
+        const d2 = 10 - d1
+
+        const num1 = `${numAtTens}${d1}`
+        const num2 = `${numAtTens}${d2}`
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
         `
         trackTime(answer)
     }
@@ -567,8 +584,8 @@ genBtn.addEventListener('click', (e) => {
         const d5 = genRandom(5, 1)
         const d6 = genRandom(5, 1)
 
-        const num1 = `${d1}${d2}${d3}`
-        const num2 = `${d4}${d5}${d6}`
+        const num1 = `${d1}.${d2}${d3}`
+        const num2 = `${d4}.${d5}${d6}`
 
         const answer = num1 * num2
 
@@ -629,10 +646,6 @@ genBtn.addEventListener('click', (e) => {
         trackTime(answer)
     }
 
-    if (type == 3) {
-        const num = genRandom(999, 100)
-    }
-
     if (type == 23) {
         const d1 = genRandom(5, 1)
         const d2 = genRandom(5, 1)
@@ -658,6 +671,32 @@ genBtn.addEventListener('click', (e) => {
     }
 
     if (type == 24) {
+        const d1 = genRandom(30, 1)
+
+        const fD2 = () => {
+            const d = genRandom(30, 1)
+
+            if (d1 + d < 31) {
+                return d
+            } else {
+                return fD2()
+            }
+        }
+
+        const d2 = fD2()
+
+        const num1 = 1000 + d1
+        const num2 = 1000 + d2
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+
+        trackTime(answer)
     }
 
     if (type == 25) {
