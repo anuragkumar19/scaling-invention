@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = 'vedicMaths-v1.0.0';
+const cacheName = 'vedicMaths-v1.0.1';
 
 const appShellFiles = ['https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.2/zephyr/bootstrap.min.css',
     'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',
