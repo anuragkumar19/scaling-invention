@@ -5,23 +5,21 @@ const ansD = document.getElementById('ansD')
 const ansS = document.getElementById('ansS')
 const tbtn = document.getElementById('tbtn')
 const qname = document.getElementById('qname')
+const nextPrevBtn = document.getElementById('next-prev-btn')
 
-
-const {
-    type
-} = Qs.parse(location.search, {
-        ignoreQueryPrefix: true
-    })
+const { type } = Qs.parse(location.search, {
+    ignoreQueryPrefix: true,
+})
 
 const genRandom = (max, min) => {
-    var random = new Random();
+    var random = new Random()
     return random.integer(min, max)
 }
 
 const parseSign = (num) => {
     const i = genRandom(2, 1)
 
-    const sign = i == 1 ? '-': '+'
+    const sign = i == 1 ? '-' : '+'
     return `${sign}${num}`
 }
 
@@ -36,40 +34,40 @@ const parseSign2 = (num) => {
 const divObj = {
     1: {
         min: 10000,
-        max: 52000
+        max: 52000,
     },
     2: {
         min: 4000,
-        max: 32000
+        max: 32000,
     },
     3: {
         min: 3000,
-        max: 25000
+        max: 25000,
     },
     4: {
         min: 2500,
-        max: 20000
+        max: 20000,
     },
     5: {
         min: 1700,
-        max: 16000
+        max: 16000,
     },
     6: {
         min: 1500,
-        max: 14000
+        max: 14000,
     },
     7: {
         min: 1300,
-        max: 12000
+        max: 12000,
     },
     8: {
         min: 1200,
-        max: 11000
+        max: 11000,
     },
     9: {
         min: 1100,
-        max: 10000
-    }
+        max: 10000,
+    },
 }
 
 const qTitle = {
@@ -84,6 +82,17 @@ const qTitle = {
     9: 'Extra Round (Time 1m 5s, 5s for writing question) - Mutiplication of two 4 digit numbers | (0-9)',
     10: 'Extra Round (Time 1m 5s, 5s for writing question) - Square root of six digit number (not a perfect square) (to the 2nd place in decimal)',
     11: 'Extra Round (Time 1m 5s, 5s for writing question) - Divide 6 digit number by 2 digit number (flag more than 5) (solution till 2nd place in decimal)',
+    12: 'Question based on Numbers (based on divisibility of 9, 7 digit number)<br />\n(a) What will be the remainder when the number is divided by 9?\n(b) What is the least amount to add to the number so that the number is divisible by 9?\n(c) What is the least amount to substract to the number so that the number is divisible by 9?',
+    13: 'Addition and substraction mixed, numbers of three digit, one digit of the three will be negative',
+    14: 'Difference of two four digit number',
+    15: 'Mutiplication with 999 of theee digit number',
+    16: '',
+    17: 'Mutiplication of two two digit number (digit greater than 5)',
+    18: 'Mutiplication of two three digit number, base 100, deviation postive and not greater than 10',
+    19: 'Mutiplication of two three digit number | (0-5)',
+    20: 'Mutiplication of two 3 digit numbers | (0-9)',
+    21: 'Difference of two fraction | numerator and denomenator not greater than 9',
+    22: 'Sum of products of two 2 digit number | (0-5)',
     23: 'Mutiplication of two 4 digit numbers | (0-5)',
     24: 'Multiplication of two four digit number, base 1000, sum of deviation not more than 30, deviation +ve and -ve',
     25: 'Difference of square of two number whose sum is 99',
@@ -94,7 +103,7 @@ const qTitle = {
     30: 'Multiplication of two quadratic equations (0-5)',
     31: 'Divide 5 digit number by 2 digit number (flag not more than 5) (find quetient and remainder)',
     32: 'Square root of eight digit number (perfect square)',
-    33: 'Multiplication of three two digit number | (0-5)'
+    33: 'Multiplication of three two digit number | (0-5)',
 }
 
 let tIndex = 0
@@ -119,9 +128,7 @@ const trackTime = (answer) => {
             ansS.classList.add('d-none')
             ansD.innerText = answer
         }
-
-    },
-        1000)
+    }, 1000)
 }
 
 const trackTime2 = (answer) => {
@@ -144,9 +151,7 @@ const trackTime2 = (answer) => {
             ansS.classList.add('d-none')
             ansD.innerText = answer
         }
-
-    },
-        1000)
+    }, 1000)
 }
 
 genBtn.addEventListener('click', (e) => {
@@ -154,10 +159,12 @@ genBtn.addEventListener('click', (e) => {
         const num1 = genRandom(99, 11)
         const num2 = genRandom(99, 11)
 
-        const answer = num1**2 + num2**2
+        const answer = num1 ** 2 + num2 ** 2
 
         t1.classList.remove('d-none')
-        t1.querySelector('.card-body').innerHTML = `<h3>(${num1})² + (${num2})²</h3>`
+        t1.querySelector(
+            '.card-body'
+        ).innerHTML = `<h3>(${num1})² + (${num2})²</h3>`
 
         trackTime(answer)
     }
@@ -183,7 +190,7 @@ genBtn.addEventListener('click', (e) => {
         const num5 = `${d9}${d10}`
         const num6 = `${d11}${d12}`
 
-        const answer = (num1*num2) + (num3*num4) + (num5*num6)
+        const answer = num1 * num2 + num3 * num4 + num5 * num6
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -197,7 +204,7 @@ genBtn.addEventListener('click', (e) => {
     if (type == 3) {
         const num = genRandom(999, 100)
 
-        const answer = num**2
+        const answer = num ** 2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `<h3>(${num})²</h3>`
@@ -210,7 +217,7 @@ genBtn.addEventListener('click', (e) => {
         const num2 = 1000 + genRandom(10, 1)
         const num3 = 1000 + genRandom(10, 1)
 
-        const answer = num1*num2*num3
+        const answer = num1 * num2 * num3
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -234,7 +241,7 @@ genBtn.addEventListener('click', (e) => {
         const num2 = parseInt(`${d3}${d4}`)
         const num3 = parseInt(`${d5}${d6}`)
 
-        const answer = num1*num2*num3
+        const answer = num1 * num2 * num3
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -262,10 +269,10 @@ genBtn.addEventListener('click', (e) => {
         const i6 = parseInt(d6)
 
         const ct = parseSign2(i3 * i6)
-        const cx = parseSign2((d2*d6) + (d5*d3))
-        const cxs = parseSign2((d1*d6) + (d3*d4) + (d2*d5))
-        const cxc = parseSign2((d1*d5) + (d4*d2))
-        const cxb = parseSign2((d1*d4))
+        const cx = parseSign2(d2 * d6 + d5 * d3)
+        const cxs = parseSign2(d1 * d6 + d3 * d4 + d2 * d5)
+        const cxc = parseSign2(d1 * d5 + d4 * d2)
+        const cxb = parseSign2(d1 * d4)
 
         const answer = `${cxb}x⁴ ${cxc}x³ ${cxs}x² ${cx}x ${ct}`
 
@@ -297,9 +304,9 @@ genBtn.addEventListener('click', (e) => {
         const i7 = parseInt(d7)
         const i8 = parseInt(d8)
 
-        const ct = parseSign2((d2*d4) + (d6*d8))
-        const cx = parseSign2((d5*d8) + (d7*d6) + (d1*d4) + (d3*d2))
-        const cxs = parseSign2((d1*d3)+(d5*d7))
+        const ct = parseSign2(d2 * d4 + d6 * d8)
+        const cx = parseSign2(d5 * d8 + d7 * d6 + d1 * d4 + d3 * d2)
+        const cxs = parseSign2(d1 * d3 + d5 * d7)
 
         const answer = `${cxs}x² ${cx}x ${ct}`
 
@@ -324,13 +331,13 @@ genBtn.addEventListener('click', (e) => {
             const d = genRandom(9, 1)
             divisor = `${d}9`
 
-            if (divident%divisor == 0) {
+            if (divident % divisor == 0) {
                 answer = 'Yes'
             } else {
                 //5,43,210
                 const str = `${divident}`
                 const arr = str.split('').reverse()
-                const f = d+1
+                const f = d + 1
 
                 let r = 0
                 arr.forEach((dig, i) => {
@@ -339,14 +346,18 @@ genBtn.addEventListener('click', (e) => {
                         return
                     }
                     if (i == 0) {
-                        r = `${parseInt((dig*f)) + parseInt(arr[1])}`
+                        r = `${parseInt(dig * f) + parseInt(arr[1])}`
                     } else {
                         if (r < 10) {
-                            r = `${(r*f) + parseInt(arr[i+1])}`
+                            r = `${r * f + parseInt(arr[i + 1])}`
                         } else {
                             const rStr = `${r}`
                             const rArr = r.split('').reverse()
-                            r = `${parseInt(rArr[0]*f) + parseInt(rArr[1]) + parseInt(arr[i+1])}`
+                            r = `${
+                                parseInt(rArr[0] * f) +
+                                parseInt(rArr[1]) +
+                                parseInt(arr[i + 1])
+                            }`
                         }
                     }
                 })
@@ -358,13 +369,15 @@ genBtn.addEventListener('click', (e) => {
             divisor = `${d}9`
 
             const m = genRandom(divObj[d].max, divObj[d].min)
-            divident = m*divisor
+            divident = m * divisor
 
             answer = 'Yes'
         }
 
         t1.classList.remove('d-none')
-        t1.querySelector('.card-body').innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
+        t1.querySelector(
+            '.card-body'
+        ).innerHTML = `<h3>${divident} ÷ ${divisor}<h3>`
         trackTime(answer)
     }
 
@@ -372,7 +385,7 @@ genBtn.addEventListener('click', (e) => {
         const num1 = genRandom(9999, 1000)
         const num2 = genRandom(9999, 1000)
 
-        const answer = num1*num2
+        const answer = num1 * num2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -394,15 +407,14 @@ genBtn.addEventListener('click', (e) => {
             } else {
                 return {
                     num,
-                    squareRoot: `${squareRoot[0]}.${squareRoot[1].charAt(0)}${squareRoot[1].charAt(1)}`
+                    squareRoot: `${squareRoot[0]}.${squareRoot[1].charAt(
+                        0
+                    )}${squareRoot[1].charAt(1)}`,
                 }
             }
         }
 
-        const {
-            num,
-            squareRoot
-        } = genIs()
+        const { num, squareRoot } = genIs()
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -420,7 +432,7 @@ genBtn.addEventListener('click', (e) => {
 
         const divisor = `${d1}${d2}`
 
-        const q = num/divisor
+        const q = num / divisor
         const qArr = q.toString().split('.')
         let answer
         if (!qArr[1]) {
@@ -437,6 +449,190 @@ genBtn.addEventListener('click', (e) => {
         trackTime2(answer)
     }
 
+    if (type == 12) {
+        const genNumber = () => {
+            const n = genRandom(9999999, 1000000)
+
+            if (n % 9 == 0) {
+                return genNumber()
+            }
+            return n
+        }
+
+        const number = genNumber()
+
+        const remainder = number % 9
+        const add = 9 - remainder
+        const answer = `Remainder is ${remainder}, Add ${add} or substract ${remainder} to make number divisible.`
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `<h3>${number} ÷ 9<h3>`
+        trackTime(answer)
+    }
+
+    if (type == 13) {
+        let num1 = genRandom(999, 100)
+        let num2 = genRandom(999, 100)
+        let num3 = genRandom(999, 100)
+
+        const negIndex = genRandom(3, 1)
+
+        if (negIndex == 1) {
+            num1 = -num1
+        }
+        if (negIndex == 2) {
+            num2 = -num2
+        }
+        if (negIndex == 3) {
+            num3 = -num3
+        }
+
+        const answer = num1 + num2 + num3
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}${parseSign2(num2)}${parseSign2(num3)}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 14) {
+        const num1 = genRandom(9999, 1000)
+        const num2 = genRandom(9999, 1000)
+
+        const answer = num1 - num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1} - ${num2}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 15) {
+        const num = genRandom(999, 100)
+
+        const answer = 999 * num
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>999 X ${num}</h3>
+        `
+        trackTime(answer)
+    }
+
+    if (type == 17) {
+        const d1 = genRandom(9, 6)
+        const d2 = genRandom(9, 6)
+        const d3 = genRandom(9, 6)
+        const d4 = genRandom(9, 6)
+
+        const num1 = `${d1}${d2}`
+        const num2 = `${d3}${d4}`
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+        trackTime(answer)
+    }
+
+    if (type == 18) {
+        const d1 = genRandom(10, 1)
+        const d2 = genRandom(10, 1)
+
+        const num1 = 100 + d1
+        const num2 = 100 + d2
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+        trackTime(answer)
+    }
+
+    if (type == 19) {
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+        const d4 = genRandom(5, 1)
+        const d5 = genRandom(5, 1)
+        const d6 = genRandom(5, 1)
+
+        const num1 = `${d1}${d2}${d3}`
+        const num2 = `${d4}${d5}${d6}`
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+        trackTime(answer)
+    }
+
+    if (type == 20) {
+        const num1 = genRandom(999, 100)
+        const num2 = genRandom(999, 100)
+
+        const answer = num1 * num2
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1}</h3>
+        <h3>${num2}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    // if(type == 21){
+    //     const d1 = genRandom(9, 1)
+    //     const d2 = genRandom(9, 1)
+    //     const d3 = genRandom(9, 1)
+    //     const d4 = genRandom(9, 1)
+
+    // }
+
+    if (type == 22) {
+        const d1 = genRandom(5, 1)
+        const d2 = genRandom(5, 1)
+        const d3 = genRandom(5, 1)
+        const d4 = genRandom(5, 1)
+        const d5 = genRandom(5, 1)
+        const d6 = genRandom(5, 1)
+        const d7 = genRandom(5, 1)
+        const d8 = genRandom(5, 1)
+
+        const num1 = `${d1}${d2}`
+        const num2 = `${d3}${d4}`
+        const num3 = `${d5}${d6}`
+        const num4 = `${d7}${d8}`
+
+        const answer = num1 * num2 + num3 * num4
+
+        t1.classList.remove('d-none')
+        t1.querySelector('.card-body').innerHTML = `
+        <h3>${num1} <span class="px-4"></span> ${num3}</h3>
+        <h3>${num2} <span class="px-4"></span> ${num4}</h3>
+        `
+
+        trackTime(answer)
+    }
+
+    if (type == 3) {
+        const num = genRandom(999, 100)
+    }
+
     if (type == 23) {
         const d1 = genRandom(5, 1)
         const d2 = genRandom(5, 1)
@@ -450,7 +646,7 @@ genBtn.addEventListener('click', (e) => {
         const num1 = `${d1}${d2}${d3}${d4}`
         const num2 = `${d5}${d6}${d7}${d8}`
 
-        const answer = num1*num2
+        const answer = num1 * num2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -461,23 +657,26 @@ genBtn.addEventListener('click', (e) => {
         trackTime(answer)
     }
 
-    if (type == 24) {}
+    if (type == 24) {
+    }
 
     if (type == 25) {
         const num1 = genRandom(89, 50)
-        const num2 = 99-num1
+        const num2 = 99 - num1
 
-        const answer = num1**2 - num2**2
+        const answer = num1 ** 2 - num2 ** 2
 
         t1.classList.remove('d-none')
-        t1.querySelector('.card-body').innerHTML = `<h3>(${num1})² - (${num2})²</h3>`
+        t1.querySelector(
+            '.card-body'
+        ).innerHTML = `<h3>(${num1})² - (${num2})²</h3>`
 
         trackTime(answer)
     }
 
     if (type == 26) {
         const num = genRandom(1035, 1001)
-        const answer = num**2
+        const answer = num ** 2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `<h3>(${num})²</h3>`
@@ -492,7 +691,7 @@ genBtn.addEventListener('click', (e) => {
 
         const num = `${d1}${d2}${d3}`
 
-        const answer = num**2
+        const answer = num ** 2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `<h3>(${num})²</h3>`
@@ -504,8 +703,7 @@ genBtn.addEventListener('click', (e) => {
         // 100 - 316
         const answer = genRandom(316, 100)
 
-        const num = answer**2
-
+        const num = answer ** 2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -519,8 +717,7 @@ genBtn.addEventListener('click', (e) => {
         // 47-99
         const answer = genRandom(99, 47)
 
-        const num = answer**3
-
+        const num = answer ** 3
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -546,10 +743,10 @@ genBtn.addEventListener('click', (e) => {
         const i6 = parseInt(d6)
 
         const ct = parseSign2(i3 * i6)
-        const cx = parseSign2((d2*d6) + (d5*d3))
-        const cxs = parseSign2((d1*d6) + (d3*d4) + (d2*d5))
-        const cxc = parseSign2((d1*d5) + (d4*d2))
-        const cxb = parseSign2((d1*d4))
+        const cx = parseSign2(d2 * d6 + d5 * d3)
+        const cxs = parseSign2(d1 * d6 + d3 * d4 + d2 * d5)
+        const cxc = parseSign2(d1 * d5 + d4 * d2)
+        const cxb = parseSign2(d1 * d4)
 
         const answer = `${cxb}x⁴ ${cxc}x³ ${cxs}x² ${cx}x ${ct}`
 
@@ -569,7 +766,7 @@ genBtn.addEventListener('click', (e) => {
 
         const divisor = `${d1}${d2}`
 
-        const remainder = num%divisor
+        const remainder = num % divisor
         const q = (num - remainder) / divisor
 
         t1.classList.remove('d-none')
@@ -581,7 +778,7 @@ genBtn.addEventListener('click', (e) => {
         // 3,163-9999
         const answer = genRandom(9999, 3163)
 
-        const num = answer**2
+        const num = answer ** 2
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -603,7 +800,7 @@ genBtn.addEventListener('click', (e) => {
         const num2 = parseInt(`${d3}${d4}`)
         const num3 = parseInt(`${d5}${d6}`)
 
-        const answer = num1*num2*num3
+        const answer = num1 * num2 * num3
 
         t1.classList.remove('d-none')
         t1.querySelector('.card-body').innerHTML = `
@@ -619,3 +816,25 @@ genBtn.addEventListener('click', (e) => {
 qname.innerText = qTitle[parseInt(type)]
 
 tbtn.addEventListener('click', () => ansS.classList.remove('d-none'))
+
+// Next previous button
+if (type == 1 || type == 12 || type == 23) {
+    nextPrevBtn.innerHTML = `<a href="#" class="btn btn-secondary disabled">Previous</a>
+    <a href="/question.html?type=${
+        parseInt(type) + 1
+    }" class="btn btn-primary">Next</a>`
+} else if (type == 11 || type == 22 || type == 33) {
+    nextPrevBtn.innerHTML = `<a href="/question.html?type=${
+        parseInt(type) - 1
+    }" class="btn btn-secondary">Previous</a>
+    <a href="/question.html?type=${
+        parseInt(type) - 10
+    }" class="btn btn-primary">Restart</a>`
+} else {
+    nextPrevBtn.innerHTML = `<a href="/question.html?type=${
+        parseInt(type) - 1
+    }" class="btn btn-secondary">Previous</a>
+    <a href="/question.html?type=${
+        parseInt(type) + 1
+    }" class="btn btn-primary">Next</a>`
+}
