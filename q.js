@@ -7,6 +7,9 @@ const tbtn = document.getElementById('tbtn')
 const qname = document.getElementById('qname')
 const nextPrevBtn = document.getElementById('next-prev-btn')
 
+const warningAudio = new Audio('/warning.mp3')
+const overAudio = new Audio('/over.mp3')
+
 const { type } = Qs.parse(location.search, {
     ignoreQueryPrefix: true,
 })
@@ -118,12 +121,13 @@ const trackTime = (answer) => {
 
     clearInterval(tIndex)
     tIndex = setInterval(() => {
-        if (time > 0) {
-            time--
+        time--
+        if (time >= 0) {
             timeD.innerText = time
         }
 
         if (time == 0) {
+            overAudio.play()
             ansS.innerText = ''
             ansS.classList.add('d-none')
             ansD.innerHTML = answer
@@ -141,12 +145,17 @@ const trackTime2 = (answer) => {
 
     clearInterval(tIndex)
     tIndex = setInterval(() => {
-        if (time > 0) {
-            time--
+        time--
+        if (time >= 0) {
             timeD.innerText = time
         }
 
+        if (time == 15) {
+            warningAudio.play()
+        }
+
         if (time == 0) {
+            overAudio.play()
             ansS.innerText = ''
             ansS.classList.add('d-none')
             ansD.innerText = answer
